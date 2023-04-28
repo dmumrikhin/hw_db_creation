@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS album (
 CREATE TABLE IF NOT EXISTS track (
 	track_id SERIAL PRIMARY KEY,
 	track_name VARCHAR(80) NOT NULL,
-	lenght DECIMAL NOT NULL,
+	lenght TIME NOT NULL,
 	album_id INTEGER NOT NULL REFERENCES album(album_id)
-	CHECK (lenght<=90)
+	CHECK (lenght<='01:30:00')
 );
 
 CREATE TABLE IF NOT EXISTS collection (
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS singer_genre (
 
 CREATE TABLE IF NOT EXISTS singer_album (
 	singer_id INTEGER REFERENCES singer(singer_id),	
-	album_id INTEGER REFERENCES slbum(album_id),
+	album_id INTEGER REFERENCES album(album_id),
 	CONSTRAINT singer_album_pk PRIMARY KEY (singer_id, album_id)
 );
 
